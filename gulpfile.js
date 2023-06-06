@@ -23,7 +23,9 @@ function compilaScripts() {
         .pipe(gulp.dest('./dist/js'))
 }
 
-exports.default = function() {
+exports.default = gulp.parallel(compilaSass, comprimeImagens, compilaScripts)
+
+exports.watch = function() {
     gulp.watch('./src/styles/*.scss', { ignoreInitial: false }, gulp.parallel(compilaSass));
     gulp.watch('./src/images/*', { ignoreInitial: false }, gulp.parallel(comprimeImagens));
     gulp.watch('./src/scripts/*.js', { ignoreInitial: false }, gulp.parallel(compilaScripts));
