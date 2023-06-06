@@ -1,1 +1,0 @@
-function ocultaElementosDoHeader(){document.querySelector("header").classList.add("header--is-hidden")}function exibeElementosDoHeader(){document.querySelector("header").classList.remove("header--is-hidden")}document.addEventListener("DOMContentLoaded",function(){window.addEventListener("scroll",function(){(0===window.scrollY?exibeElementosDoHeader:ocultaElementosDoHeader)()})});
