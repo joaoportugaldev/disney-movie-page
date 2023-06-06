@@ -1,86 +1,105 @@
-$corTextoDefault: #fff;
+@use 'header';
+@use 'variaveis';
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    color: $corTextoDefault;
+    color: variaveis.$corTextoSecundario;
+    text-decoration: none;
+    list-style: none;
 }
 
 @mixin title($fontSize: 40px) {
     font-size: $fontSize;
-    color: $corTextoDefault;
+    color: variaveis.$corTextoSecundario;
     font-weight: bold;
 }
 
 @mixin text($fontSize: 18px) {
     font-size: $fontSize;
-    color: $corTextoDefault;
+    color: variaveis.$corTextoSecundario;
     font-weight: 400;
     line-height: 1.75rem;
 }
 
 body {
-    background-color: black;
+    background-color: variaveis.$corDeFundo;
 }
 
 .title {
     @include title;
+
+    @media (max-width: 768px) {
+        @include title(24px);
+    }
 }
 
 .title--big {
     @include title(64px);
+
+    @media (max-width: 768px) {
+        @include title(26px);
+    }
 }
 
 .text {
     @include text;
+
+    @media (max-width: 768px) {
+        @include text(16px);
+    }
 }
+
 
 .text--small {
     @include text(16px);
+
+    @media (max-width: 768px) {
+        @include text(11px);
+    }
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
 }
 
 .hero {
     height: 100vh;
-    background: linear-gradient(to left, rgba(21, 21, 21, 0) 0%, rgb(0, 0, 0)), 
-    linear-gradient(rgba(21, 21, 21, 0) 80%, rgb(0, 0, 0)), 
+    background: linear-gradient(to left, rgba(21, 21, 21, 0) 0%, rgb(0,0,0)), 
+    linear-gradient(rgba(21, 21, 21, 0) 80%, rgb(0,0,0)), 
     url('https://res.cloudinary.com/hvzbb2hdx/image/upload/c_scale,f_auto,w_1600/v1/playlists/bp-select/heroWeb/9122c440-4f31-11ed-b28c-4ff44f71e5e6') 
     center center / cover;
+
+    @media (max-width: 768px) {
+        margin-top: 32px;
+    }
 }
 
-    .description {
-        padding: 100px;
-        display: flex;
-        height: 100vh;
-        align-items: center;
-        position: absolute;
-        top: 20vh;
-        left: 0;
+.description__content {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
 
-    &__content {
-        display: flex;
-        flex-direction: column;
-        max-width: 400px;
-        width: 100%;
+    .title--big,
+    .button,
+    .text {
+        margin-bottom: 32px;
+    }
 
-        .title--big,
-        .button,
+    &__moviedescript {
         .text {
-            margin-bottom: 32px;
-        }
-
-        &__moviedescript {
-            .text {
-                font-weight: bold;
-            }
+            font-weight: bold;
         }
     }
 }
 
 .button {
     padding: 12px 32px;
-    background-color: $corTextoDefault;
+    background-color: variaveis.$corTextoSecundario;
     color: black;
     font-size: 16px;
     font-weight: bold;
@@ -93,9 +112,8 @@ body {
 }
 
 .videos {
-    padding: 100px;
-    margin-top: 160px;
-
+    margin-bottom: 160px;
+    
     .title {
         margin-bottom: 32px;
     }
@@ -128,4 +146,49 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        row-gap: 36px;
+    }
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    font-size: 18px;
+    color: variaveis.$corTextoSecundario;
+    background-color: variaveis.$corDeFundoBotaoPrimario;
+    text-transform: uppercase;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 8px 14px;
+    letter-spacing: 1px;
+    border: 1px solid  variaveis.$corDeFundoBotaoPrimario;
+
+    &:hover {
+        background-color: lighten(variaveis.$corDeFundoBotaoPrimario, 3%);
+    }
+
+    &--secondary {
+        background-color: variaveis.$corDeFundoBotaoSecundario;
+        border-color: variaveis.$corDeFundoBotaoSecundario;
+
+        &:hover {
+            background-color: lighten(variaveis.$corDeFundoBotaoSecundario, 3%);
+        }
+    }
+
+    &--dark {
+        background-color: rgba(variaveis.$corDeFundoBotaoDark, 0.8);
+        border-color: variaveis.$corTextoSecundario;
+
+        &:hover {
+            background-color: variaveis.$corTextoSecundario;
+            color: variaveis.$corDeFundo;
+        }
+    }
 }
